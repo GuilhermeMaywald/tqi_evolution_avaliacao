@@ -1,0 +1,255 @@
+---
+swagger: "2.0"
+info:
+  description: API de solicitação de emprestimo
+  version: 1.0.0
+  title: Analise de solicitação de Emprestimo
+  contact:
+    name: Guilherme Buiatti Maywald
+    email: guilhermemaywald@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: virtserver.swaggerhub.com
+basePath: /Maywald/Emprestimo/1.0.0
+tags:
+- name: Cliente
+  description: Clientes com solicitação e consuta de emprestimo
+- name: Emprestimo
+  description: Solicitação de emprestimo
+- name: Acompanhamento
+  description: Consulta de emprestimo
+schemes:
+- https
+paths:
+  /clientes/{cpf}:
+    get:
+      tags:
+      - Cliente
+      summary: searches inventory
+      description: Cadastro de clientes
+      operationId: searchInventory
+      produces:
+      - application/json
+      parameters:
+      - name: cpf
+        in: path
+        description: cpf do cliente
+        required: true
+        type: string
+      responses:
+        "200":
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ClienteDetalhes'
+        "400":
+          description: bad input parameter
+        "401":
+          description: Not authorized
+  /clientes/:
+    post:
+      tags:
+      - Cliente
+      summary: adds an inventory item
+      description: Clientes
+      operationId: addInventory
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: inventoryItem
+        description: Inventory item to add
+        required: false
+        schema:
+          $ref: '#/definitions/ClienteItem'
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: invalid input, object invalid
+        "409":
+          description: an existing item already exists
+  /emprestimos/{cpf}:
+    get:
+      tags:
+      - Acompanhamento
+      summary: searches inventory
+      description: Analise de solicitação de emprestimo
+      produces:
+      - application/json
+      parameters:
+      - name: cpf
+        in: path
+        description: valor do emprestimo
+        required: true
+        type: number
+      - name: parcelas
+        in: query
+        description: numero de parcelas
+        required: false
+        type: integer
+        maximum: 60
+        minimum: 10
+      responses:
+        "200":
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/EmprestimoItem'
+        "400":
+          description: bad input parameter
+  /emprestimos/{cpf}/{idEmprestimo}:
+    get:
+      tags:
+      - Acompanhamento
+      summary: adds an inventory item
+      description: Acompanhamento de solicitação de emprestimo
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: cpf
+        in: path
+        required: true
+        type: number
+      - name: idEmprestimo
+        in: path
+        required: true
+        type: number
+      - in: body
+        name: inventoryItem
+        description: Inventory item to add
+        required: false
+        schema:
+          $ref: '#/definitions/EmprestimoItem'
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: invalid input, object invalid
+        "409":
+          description: an existing item already exists
+  /emprestimos/:
+    post:
+      tags:
+      - Emprestimo
+      summary: adds an inventory item
+      description: Solicitaçao de emprestimo
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: inventoryItem
+        description: Inventory item to add
+        required: false
+        schema:
+          $ref: '#/definitions/EmprestimoItem'
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: invalid input, object invalid
+        "409":
+          description: an existing item already exists
+definitions:
+  ClienteItem:
+    type: object
+    required:
+    - cpf
+    - nome
+    - renda
+    - rg
+    - senha
+    properties:
+      cpf:
+        type: string
+        example: 111.111.111-11
+      rg:
+        type: string
+        example: MG-11.111-111
+      nome:
+        type: string
+        example: Guilherme Maywald
+      renda:
+        type: number
+        example: 3.0
+      rua:
+        type: string
+        example: Rua Dr Lacerda
+      numero:
+        type: number
+        example: 380.0
+      bairro:
+        type: string
+        example: Lidice
+      cidade:
+        type: string
+        example: Uberlandia
+      estado:
+        type: string
+        example: Minas Gerais
+      senha:
+        type: string
+        example: "123456"
+  ClienteDetalhes:
+    type: object
+    properties:
+      cpf:
+        type: string
+        example: 111.111.111-11
+      rg:
+        type: string
+        example: MG-11.111-111
+      nome:
+        type: string
+        example: Guilherme Maywald
+      renda:
+        type: number
+        example: 3.0
+      rua:
+        type: string
+        example: Rua Dr Lacerda
+      numero:
+        type: number
+        example: 380.0
+      bairro:
+        type: string
+        example: Lidice
+      cidade:
+        type: string
+        example: Uberlandia
+      estado:
+        type: string
+        example: Minas Gerais
+  EmprestimoItem:
+    type: object
+    required:
+    - cpf
+    - email
+    - quantidade de parcelas
+    - renda
+    - valor
+    properties:
+      cpf:
+        type: string
+        example: 111.111.111-11
+      email:
+        type: string
+        example: guilhermemaywald@gmail.com
+      valor:
+        type: number
+        example: 50.0
+      renda:
+        type: number
+        example: 3.0
+      quantidade de parcelas:
+        type: number
+        example: 60.0
