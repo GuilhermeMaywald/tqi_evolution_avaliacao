@@ -1,8 +1,0 @@
-br/com/tqi/credito/controller/LoginController.class
-br/com/tqi/credito/CreditoApplication.class
-br/com/tqi/credito/controller/ClienteController.class
-br/com/tqi/credito/controller/EmprestimoController.class
-br/com/tqi/credito/model/Emprestimo.class
-br/com/tqi/credito/model/Cliente.class
-br/com/tqi/credito/repository/ClienteRepository.class
-br/com/tqi/credito/repository/EmprestimoRepository.class
