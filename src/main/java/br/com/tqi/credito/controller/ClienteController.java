@@ -4,9 +4,8 @@ import br.com.tqi.credito.model.Cliente;
 import br.com.tqi.credito.repository.ClienteRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 /**
  * Classe utilizada para gerenciar os clientes.
@@ -33,7 +32,7 @@ public class ClienteController {
 
     @GetMapping(path = {"/{cpf}"})
     public Cliente findByCPF(@PathVariable String cpf){
-        return repository.findByCpf(cpf);
+         return repository.findByCpf(cpf);
     }
 
     /**
