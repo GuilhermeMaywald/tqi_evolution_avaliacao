@@ -1,10 +1,17 @@
 package br.com.tqi.credito.controller;
 
 import br.com.tqi.credito.model.Cliente;
+import br.com.tqi.credito.model.Login;
+import br.com.tqi.credito.repository.ClienteRepository;
+import ch.qos.logback.core.net.server.Client;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 /**
  * Classe utilizada para gerenciar login.
@@ -14,14 +21,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/login")
 public class LoginController {
 
-//    /**
-//     * Metodo usado para cadastrar clientes
-//     *
-//     * @param cliente
-//     */
-//
-//    @PostMapping
-//    public Cliente create(@RequestBody <?> cliente){
-//        return repository.save(cliente);
-//    }
+    private ClienteRepository repository;
+    /**
+     * Metodo usado para login de clientes
+     *
+     * @param {email} {senha}
+     * @return
+     */
+
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody Login login){
+        Cliente cliente = repository.findByCpf(login.getCpf());
+
+
+        if (login.getCpf().equals(cliente.getCpf()) && login.getSenha().equals(cliente.getSenha())) {
+            return ResponseEntity.status(200).body("Cliente logado com sucesso: " + cliente.getNome());
+        } else {
+            return ResponseEntity.status(401).body("Acesso negado");
+        }
+
+
+    }
 }

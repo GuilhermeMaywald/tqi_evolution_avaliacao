@@ -32,7 +32,7 @@ public class ClienteController {
      */
 
     @GetMapping(path = {"/{cpf}"})
-    public Optional<Cliente> findByCPF(@PathVariable String cpf){
+    public Cliente findByCPF(@PathVariable String cpf){
         return repository.findByCpf(cpf);
     }
 

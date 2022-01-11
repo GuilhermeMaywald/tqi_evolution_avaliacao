@@ -7,6 +7,7 @@ import java.util.Optional;
 
 
 public interface ClienteRepository extends CrudRepository<Cliente, Long> {
-    Optional<Cliente>  findByCpf(String cpf);
+    Cliente  findByCpf(String cpf);
+
 }
 
