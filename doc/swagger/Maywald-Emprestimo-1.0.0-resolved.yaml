@@ -16,19 +16,35 @@ tags:
 - name: Cliente
   description: Clientes com solicitação e consuta de emprestimo
 - name: Emprestimo
-  description: Solicitação de emprestimo
+  description: Solicitação de emprestimio
 - name: Acompanhamento
   description: Consulta de emprestimo
 schemes:
 - https
 paths:
+  /login:
+    post:
+      tags:
+      - Cliente
+      summary: Login cliente
+      description: Login cliente
+      operationId: loginCliente
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: loginItem
+        description: Login Item
+        required: false
+        schema:
+          $ref: '#/definitions/LoginItem'
   /clientes/{cpf}:
     get:
       tags:
       - Cliente
-      summary: searches inventory
+      summary: Busca cliente
       description: Cadastro de clientes
-      operationId: searchInventory
+      operationId: findClienteByCPF
       produces:
       - application/json
       parameters:
@@ -253,3 +269,15 @@ definitions:
       quantidade de parcelas:
         type: number
         example: 60.0
+  LoginItem:
+    type: object
+    required:
+    - email
+    - senha
+    properties:
+      email:
+        type: string
+        example: guilhermemaywald@gmail.com
+      senha:
+        type: string
+        example: "123456"
