@@ -2,14 +2,14 @@ package br.com.tqi.credito.model;
 
 public class Login {
 
-    private String cpf;
+    private String email;
     private String senha;
 
-    public String getCpf() {
-        return cpf;
+    public String getEmail() {
+        return email;
     }
-    public void setCpf(String email) {
-        this.cpf = email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {

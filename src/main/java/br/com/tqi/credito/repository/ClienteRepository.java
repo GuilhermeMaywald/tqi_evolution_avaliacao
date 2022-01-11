@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface ClienteRepository extends CrudRepository<Cliente, Long> {
     Cliente  findByCpf(String cpf);
+    Cliente  findByEmail(String email);
 
 }
 

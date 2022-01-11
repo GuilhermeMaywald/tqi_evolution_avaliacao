@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.text.html.Option;
-import java.util.Optional;
-
 /**
  * Classe utilizada para gerenciar login.
  * @author Guilherme Maywald
@@ -35,10 +32,10 @@ public class LoginController {
 
     @PostMapping
     public ResponseEntity<String> create(@RequestBody Login login){
-        Cliente cliente = repository.findByCpf(login.getCpf());
+        Cliente cliente = repository.findByEmail(login.getEmail());
 
         try {
-            if (login.getCpf().equals(cliente.getCpf()) && login.getSenha().equals(cliente.getSenha())) {
+            if (login.getEmail().equals(cliente.getEmail()) && login.getSenha().equals(cliente.getSenha())) {
                 return ResponseEntity.status(200).body("{ Cliente logado com sucesso: " + cliente.getNome() + " } ");
             } else {
                 return ResponseEntity.status(401).body("{ Acesso negado } ");

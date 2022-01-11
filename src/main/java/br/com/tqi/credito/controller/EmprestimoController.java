@@ -33,8 +33,8 @@ public class EmprestimoController {
      */
 
     @GetMapping(path = {"/{cpf}"})
-    public List<Emprestimo> findByCPF(@PathVariable String cpf){
-        return repository.findByCpf(cpf);
+    public List<Emprestimo> findAllByCPF(@PathVariable String cpf){
+        return repository.findAllByCpf(cpf);
     }
 
     /**
