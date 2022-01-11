@@ -5,6 +5,7 @@ import br.com.tqi.credito.model.Emprestimo;
 import br.com.tqi.credito.repository.EmprestimoRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,9 +51,18 @@ public class EmprestimoController {
     /** Metodo utilizado para gravar o novo emprestimo
      * @param emprestimo
      *
+     * @return
      */
     @PostMapping
-    public Emprestimo create(@RequestBody Emprestimo emprestimo){
-        return repository.save(emprestimo);
+    public ResponseEntity<?> create(@RequestBody Emprestimo emprestimo){
+
+        if (emprestimo.getQuantidadeDias(emprestimo.getPrimeiraParcela()) > 90) {
+            return ResponseEntity.status(200).body("Primeira parcela maior que 90 dias");
+
+        } else if (emprestimo.getQuantidadeParcelas() > 60) {
+            return ResponseEntity.status(200).body("Numero de parcelas maior que 60");
+        } else {
+            return ResponseEntity.status(200).body(repository.save(emprestimo));
+        }
     }
 }

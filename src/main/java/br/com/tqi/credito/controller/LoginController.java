@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/login")
 public class LoginController {
 
-    /**
-     * Metodo usado para cadastrar clientes
-     *
-     * @param cliente
-     */
-
+//    /**
+//     * Metodo usado para cadastrar clientes
+//     *
+//     * @param cliente
+//     */
+//
 //    @PostMapping
 //    public Cliente create(@RequestBody <?> cliente){
 //        return repository.save(cliente);
