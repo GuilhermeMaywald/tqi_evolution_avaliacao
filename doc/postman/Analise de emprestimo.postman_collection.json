@@ -91,7 +91,7 @@
 							"variable": [
 								{
 									"key": "cpf",
-									"value": "11111111111"
+									"value": "111.111.111-11"
 								}
 							]
 						}
@@ -105,7 +105,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cpf\": \"111.111.111.11\" ,\n    \"valor\" : 15900.98,\n    \"primeiraParcela\" : \"27-03-2022\", \n    \"quantidadeParcelas\" : 50\n}",
+							"raw": "{\n    \"cpf\": \"111.111.111-11\" ,\n    \"valor\" : 15900.98,\n    \"primeiraParcela\" : \"2022-03-20\", \n    \"quantidadeParcelas\" : 59\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -165,7 +165,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \n    \"cpf\" : \"111.111.111-11\",\n    \"senha\" : \"1233456\"\n}",
+							"raw": "{ \n    \"email\" : \"guilhermemaywald@gmail.com\",\n    \"senha\" : \"1233456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
