@@ -160,17 +160,27 @@
 			"item": [
 				{
 					"name": "Login",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \n    \"email\" : \"guilhermemaywald@gmail.com\",\n    \"senha\" : \"1233456\"\n}"
+							"raw": "{ \n    \"cpf\" : \"111.111.111-11\",\n    \"senha\" : \"1233456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"url": null
+						"url": {
+							"raw": "{{basePath}}/login",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"login"
+							]
+						}
 					},
 					"response": []
 				}
